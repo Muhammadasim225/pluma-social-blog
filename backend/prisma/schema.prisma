@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+
+
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id String @id @default(uuid())
+  full_name String
+  username String?
+  email_address String @unique
+  password String
+  profile_pic String?
+  profile Profile?
+  createdAt DateTime @default(now())
+  posts Post[]
+  likes Like[]
+  comment Comment[]
+  tags Tag[]
+  following    Follow[] @relation("UserFollowing")
+  followers    Follow[] @relation("UserFollowers")
+}
+model Follow {
+  followerId  String
+  followingId String
+  createdAt   DateTime @default(now())
+  follower    User @relation("UserFollowing", fields: [followerId], references: [id])
+  following   User @relation("UserFollowers", fields: [followingId], references: [id])
+  @@id([followerId, followingId])
+}
+
+model Profile{
+  id String @id @default(uuid())
+  about_Us String
+  userId String @unique
+  user User @relation(fields: [userId],references: [id])
+  twitter_link   String?   // Optional
+  github_link    String?
+  linkedin_link  String?
+}
+
+model Post{
+  id String @id @default(uuid())
+  title String
+  cover_img String?
+  description String
+  readTime Int? // For full Bog Post Content
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  published Boolean @default(false)
+  userId String 
+  user User @relation(fields: [userId],references: [id])
+  likes Like[]
+  comments Comment[]
+  tags Tag[] @relation("PostTags")
+  views Int @default(0)
+  likesCount Int @default(0)
+  commentCount Int @default(0)
+
+}
+
+
+model Like{
+  id String @id @default(uuid())
+  postId String
+  createdAt DateTime @default(now())
+  post Post @relation(fields: [postId], references: [id])
+  userId String 
+  user User @relation(fields: [userId],references: [id])
+  @@unique([postId,userId])
+}
+
+model Comment{
+  id String @id @default(uuid())
+  text String
+  userId String
+  user User @relation(fields: [userId],references: [id])
+  postId String
+  post Post @relation(fields: [postId],references: [id])
+  createdAt DateTime @default(now())
+}
+
+
+model Tag{
+  id String @id @default(uuid())
+  text String @unique
+  userId String
+  user User @relation(fields: [userId],references: [id])
+  posts Post[] @relation("PostTags")
+
+}

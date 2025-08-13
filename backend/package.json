@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "@prisma/client": "^6.11.0",
+    "apollo-server": "^3.5.0",
+    "apollo-server-core": "^3.5.0",
+    "apollo-server-express": "^3.13.0",
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^2.7.0",
+    "cookie-parser": "^1.4.7",
+    "cookie-session": "^2.1.0",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "graphql": "^15.8.0",
+    "graphql-iso-date": "^3.6.1",
+    "graphql-scalars": "^1.24.2",
+    "jsonwebtoken": "^9.0.2",
+    "passport": "^0.7.0",
+    "passport-github2": "^0.1.12",
+    "passport-google-oauth20": "^2.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.11.0"
+  }
+}

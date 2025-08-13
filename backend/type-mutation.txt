@@ -1,0 +1,366 @@
+--------------------------Signup User------------------------
+
+# Write your query or mutation here
+mutation createUser($userNew:UserInput!){
+  signUpUser(userNew:$userNew){
+      full_name,
+      email_address,
+      password
+
+  
+  }
+}
+
+=======================Query Variable==================
+
+{
+  "userNew":{
+    "full_name":"Touheed Asim",
+    "email_address":"touheedasim123@gmail.com",
+    "password":"touheed098@"
+  }
+}
+
+================Get All Users=====================
+
+query getAllUsers{
+  users{
+    id,
+    full_name,
+    email_address,
+    password,
+    posts{
+      title
+      description
+      
+      
+    },
+    followers{
+      full_name
+      
+    }
+    
+  }
+}
+
+------------------------Login User--------------------------
+
+mutation loginUser($registeredUser:enterLoginDetails!){
+  loginUser(registeredUser:$registeredUser){
+    token
+    } 
+  }
+  
+
+====================Query Variable=====================
+
+{
+  "registeredUser":{
+    "email_address":"mirza123@gmail.com",
+    "password":"mirzaghalib123@"
+  }
+}
+
+========================BlogPost=========================
+
+mutation BlogPostCreation($insertContent: enterAllDetails!) {
+  createBlogPost(insertContent: $insertContent) {
+    title
+    description
+    user { 
+      full_name
+    }
+    tags {
+      text
+    }
+  }
+}
+
+===================http Header============================
+
+{
+  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI5MTJhYWNlLWVkZGUtNDJmYS05YmM4LTQyNDI3MzMwMTYzNSIsImVtYWlsX2FkZHJlc3MiOiJtaXJ6YTEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NTIwNjU3NjksImV4cCI6MTc1MjA3Mjk2OX0.PpFg-j_2rgcqQPVLxupGDHF_NrfJUPb_P4Rc36FVixM"
+}
+
+----------------Get All Blog Posts-------------------------
+
+query getAllBlogPosts{
+  posts{
+    title,
+    description,
+    readTime
+       user {
+        id
+      full_name
+      email_address
+      password
+      },
+    tags{
+      text
+    }
+
+  }
+}
+
+--------------------Get User By ID------------------------
+
+query getUserById{
+  user{
+    full_name,
+    email_address,
+    password,
+    
+  }
+}
+
+
+========================http Header==========================
+
+{
+  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI5MTJhYWNlLWVkZGUtNDJmYS05YmM4LTQyNDI3MzMwMTYzNSIsImVtYWlsX2FkZHJlc3MiOiJtaXJ6YTEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NTIyNTgyOTQsImV4cCI6MTc1MjI2NTQ5NH0._iRfF_N0dwc4ltLE-hq39_t1P9WhZtiIDKjnJJtlWHw"
+}
+
+-------------------Get Post By ID-------------------------
+
+query getPostById{
+  post(id:"21565955-8a6d-4bb0-b2b3-7adf7316bc11"){
+    title,
+    description,
+    user{
+      full_name
+    } 
+  }
+}
+
+------------------Edit Profile---------------------
+
+mutation edit_profile($editData:enterAllData!){
+  edit_profile(editData:$editData){
+    about_Us
+    twitter_link
+    user{
+      full_name
+    }
+  }
+}
+
+=====================Query Variable===========================
+
+{
+  "editData":{
+    "about_Us":"I am software engineer and my passion to make websites",
+    "twitter_link":"https://twitter.com/yourusername",
+    "github_link":"https://github.com/yourusername",
+    "linkedin_link":"https://www.linkedin.com/in/yourusername",
+    "full_name":"John Doe",
+    "username":"johndoe123098@"
+    
+  }
+}
+
+===========================HTTP HEADER================================
+
+{
+  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNjNGMwMTlhLTI5ODItNGZhZC05MzFiLTMxMmIyMjYxZmJiMCIsImVtYWlsX2FkZHJlc3MiOiJ0b3VzZWVyMTIzQGdtYWlsLmNvbSIsImlhdCI6MTc1MTk2NDk2NiwiZXhwIjoxNzUxOTcyMTY2fQ.craseOTYtdeRFnMLRzDfA_4DlWq2ecWbWDF-J0vZR4s"
+}
+
+---------------------Delete Post By ID-------------------------
+
+query deletePostById{
+  deletePost(id:"f36707b5-f5eb-4153-88f7-ae6b9b769553"){
+    title,
+    description,
+    
+  }
+}
+
+---------------------Get All Tags-----------------------
+
+query FetchAllTags{
+  tags{
+    text
+    
+  }
+}
+
+-----------------Fetch Single Tag-----------------------
+
+query fetchSingleTag{
+  tag(id:"84ed4055-bf65-470e-b11c-3faaa68df4a0"){
+      text
+  }
+}
+
+------------------Get Tag By User ID------------------------
+
+query tagByUserId{
+  getTagByUserId(id:"cc4c019a-2982-4fad-931b-312b2261fbb0"){
+      text,
+    user{
+      full_name,
+      email_address
+    
+  }
+    }
+  
+  
+}
+
+----------------Get Post By User Id-----------------------
+
+query getPostByUserId{
+  getPostByUserId(id:"cc4c019a-2982-4fad-931b-312b2261fbb0"){
+    title,
+    description,
+    tags{
+      text
+    },
+    user{
+      full_name
+    }
+    }
+  }
+
+======================HTTP HEADERS========================
+
+  {
+  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNjNGMwMTlhLTI5ODItNGZhZC05MzFiLTMxMmIyMjYxZmJiMCIsImVtYWlsX2FkZHJlc3MiOiJ0b3VzZWVyMTIzQGdtYWlsLmNvbSIsImlhdCI6MTc1MTk2Mjg3NSwiZXhwIjoxNzUxOTcwMDc1fQ._Is9VSjHM8ngfM2AEx4yzMgZfrJ_xvEX_eVV1U8th9c"
+}
+
+--------------------Get Other User's Blog Post---------------------
+
+query getOtherUsersBlogPosts{
+  
+  
+  getAllBlogPostsOthers(id:"b912aace-edde-42fa-9bc8-424273301635"){    
+    title
+    description
+    user {
+      full_name
+    }
+    tags {
+      text
+    }
+  }
+}
+
+========================HTTP HEADERS=============================
+
+  {
+  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNjNGMwMTlhLTI5ODItNGZhZC05MzFiLTMxMmIyMjYxZmJiMCIsImVtYWlsX2FkZHJlc3MiOiJ0b3VzZWVyMTIzQGdtYWlsLmNvbSIsImlhdCI6MTc1MTk2Mjg3NSwiZXhwIjoxNzUxOTcwMDc1fQ._Is9VSjHM8ngfM2AEx4yzMgZfrJ_xvEX_eVV1U8th9c"
+}
+
+
+------------------Like a Post---------------------
+
+mutation likesPost($insertData:enterLikeData!){
+  likesPost(insertData:$insertData){
+        likesCount
+    title,
+    description
+    user{
+      full_name
+    }
+    tags{
+      text
+    } 
+  }
+}
+
+==================Query Variable==========================
+
+{
+  "insertData":{
+    "postId":"21565955-8a6d-4bb0-b2b3-7adf7316bc11"
+  }
+}
+
+================HTTP HEADER=================================
+
+{
+  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI5MTJhYWNlLWVkZGUtNDJmYS05YmM4LTQyNDI3MzMwMTYzNSIsImVtYWlsX2FkZHJlc3MiOiJtaXJ6YTEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NTIxNDMxOTksImV4cCI6MTc1MjE1MDM5OX0.-QiOC7cFUZjxel9EPrMPwO_r4T498YUyf4rX5vWaEFg"
+}
+
+--------------------Get All Blog Post by Latest Sort----------------------
+
+query getAllBlogPostByLatestSort{
+  posts{
+    title,
+    description,
+    tags{
+      text
+    }
+    user{
+      full_name
+    }
+   createdAt
+
+  }
+}
+
+===================HTTP HEADER======================
+
+{
+  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI5MTJhYWNlLWVkZGUtNDJmYS05YmM4LTQyNDI3MzMwMTYzNSIsImVtYWlsX2FkZHJlc3MiOiJtaXJ6YTEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NTIwNTEyNzUsImV4cCI6MTc1MjA1ODQ3NX0._bNPFLqa6hwyRKV6s7MB1CJyZYOnSyRa1ns6cjQLNNc"
+}
+
+-----------------------Create a Comment---------------------
+
+mutation createComment($insertCommentData:enterCommentData!){
+ commentPost(insertCommentData: $insertCommentData) {
+    comments {
+      text
+    }
+  }
+    
+  
+  }
+
+====================Query Variable===========================
+
+{
+  "insertCommentData": {
+    "postId":"6124e49e-3e78-4968-9f40-ea14714a0da3",
+    "text":"I like it"
+  }
+}
+
+===================HTTP HEADER================================
+
+{
+  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI5MTJhYWNlLWVkZGUtNDJmYS05YmM4LTQyNDI3MzMwMTYzNSIsImVtYWlsX2FkZHJlc3MiOiJtaXJ6YTEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NTIxNDMxOTksImV4cCI6MTc1MjE1MDM5OX0.-QiOC7cFUZjxel9EPrMPwO_r4T498YUyf4rX5vWaEFg"
+}
+
+----------------------Follow a User-----------------------------
+
+mutation followUser($insertFollowingData:enterFollowingData!){
+  followOtherUser(insertFollowingData:$insertFollowingData){
+    follower{
+      id,
+      email_address
+      full_name
+    },
+    following{
+      id,
+      email_address
+      full_name
+
+    } 
+  } 
+}
+
+===================Query Variable============================
+
+{
+  "insertFollowingData":{
+    "followingId":"a35da2da-e3fb-4527-85c2-c607d4220e8d"
+    
+  }
+  
+}
+
+==================HTTP HEADER=============================
+
+{
+  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI5MTJhYWNlLWVkZGUtNDJmYS05YmM4LTQyNDI3MzMwMTYzNSIsImVtYWlsX2FkZHJlc3MiOiJtaXJ6YTEyM0BnbWFpbC5jb20iLCJpYXQiOjE3NTIyNTY2OTEsImV4cCI6MTc1MjI2Mzg5MX0.HZfwlYGNwKjZ9uUNYuMCLQ2bNff5fedi7A2HrCyoIyc"
+}

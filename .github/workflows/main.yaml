@@ -32,3 +32,6 @@ jobs:
                 context: ./frontend
                 push: true
                 tags: ${{secrets.DOCKER_USERNAME}}/pluma-frontend:latest
+                build-args: |
+                 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=dcifwrs3x
+                 NEXT_PUBLIC_GRAPHQL_ENDPOINT=http://backend:5000/graphql

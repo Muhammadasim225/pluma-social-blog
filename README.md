@@ -50,6 +50,8 @@ Built with **Next.js**, **GraphQL**, **PostgreSQL**, and **Prisma ORM**, it enab
 
 <img width="693" height="611" alt="image" src="https://github.com/user-attachments/assets/2ad9fe3a-a1c8-423e-a54b-9cb7e4824263" />
 
+<img width="1898" height="878" alt="image" src="https://github.com/user-attachments/assets/5f9e6f70-0248-4a13-a341-674da5393507" />
+
 ---
 
 ## 🚀 Getting Started

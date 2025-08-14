@@ -92,6 +92,21 @@ npm run dev
 
 ---
 
+## 🐳 Docker Hub Images
+
+You can also pull ready-to-run images from Docker Hub:
+
+**Frontend**
+```bash
+docker push muhammadasim0333/pluma-frontend
+```
+
+**Backend**
+```bash
+docker push muhammadasim0333/pluma-backend
+```
+
+
 ## ⚙️ Environment Variables
 Create a `.env` file in the root and configure:
 ```env
